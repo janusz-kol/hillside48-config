@@ -15,9 +15,7 @@
 #define RAISE_L 3
 
 / {
-    combos {
-        compatible = "zmk,combos";
-    };
+    combos { compatible = "zmk,combos"; };
 
     behaviors {
         spc_lower: spc_lower {
@@ -25,6 +23,7 @@
             label = "SPC_LOWER";
             #binding-cells = <2>;
             bindings = <&mo>, <&kp>;
+
             tapping-term-ms = <200>;
             flavor = "hold-preferred";
             hold-while-undecided;
@@ -35,6 +34,7 @@
             label = "HRM";
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
+
             tapping-term-ms = <150>;
             flavor = "balanced";
             hold-while-undecided;
@@ -61,47 +61,52 @@
         compatible = "zmk,keymap";
 
         // Physical rows: 12 keys, 12 keys, 14 keys, 10 thumb keys.
+
         colemak_layer {
             display-name = "Colemak Layer";
             bindings = <
-&kp TAB    &kp Q         &kp W        &kp F         &kp P         &kp B                                          &kp J       &kp L         &kp U         &kp Y        &kp SEMICOLON &kp BSPC
-&kp ESC    &hrm LGUI A   &hrm RALT R  &hrm LCTRL S  &hrm RSHFT T  &kp G                                          &kp M       &hrm RSHFT N  &hrm RCTRL E  &hrm RALT I  &hrm RGUI O   &kp SQT
-&kp LSHFT  &kp Z         &kp X        &kp C         &kp D         &kp V  &kp PG_UP                     &kp PG_DN  &kp K       &kp H         &kp COMMA     &kp DOT      &kp FSLH     &mt RSHFT RET
-                        &kp LCTRL                 &kp LGUI      &kp LALT &spc_lower LOWER_L SPACE &mo ADJ_L  &spc_lower RAISE_L ENTER &kp SPACE &kp RALT &kp RGUI                &kp RIGHT
+&kp TAB    &kp Q        &kp W        &kp F                     &kp P         &kp B                     &kp J      &kp L         &kp U         &kp Y        &kp SEMICOLON  &kp BSPC
+&kp ESC    &hrm LGUI A  &hrm RALT R  &hrm LCTRL S              &hrm RSHFT T  &kp G                     &kp M      &hrm RSHFT N  &hrm RCTRL E  &hrm RALT I  &hrm RGUI O    &kp SQT
+&kp LSHFT  &kp Z        &kp X        &kp C                     &kp D         &kp V                     &kp PG_UP  &kp PG_DN     &kp K         &kp H        &kp COMMA      &kp DOT   &kp FSLH  &mt RSHFT RET
+&kp LCTRL  &mo 2        &kp LGUI     &spc_lower LOWER_L SPACE  &kp TAB       &spc_lower RAISE_L ENTER  &kp SPACE  &kp RALT      &kp RGUI      &kp RIGHT
             >;
+
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
 
         lower_layer {
             display-name = "Lower Layer";
             bindings = <
-&kp LA(TAB) &kp N1    &kp N2     &kp N3      &kp N4         &kp N5                                    &kp N6          &kp N7 &kp N8    &kp N9    &kp N0      &kp DEL
-&trans      &kp MINUS &kp EQUAL  &kp LBKT    &kp RBKT       &kp BSLH                                  &kp KP_MULTIPLY &kp N4 &kp N5    &kp N6    &kp KP_PLUS &kp KP_MINUS
-&trans      &kp ESC   &kp CAPS   &kp DELETE  &kp BACKSPACE  &kp GRAVE &trans                  &trans  &kp KP_DIVIDE   &kp N1 &kp N2    &kp N3    &kp RET     &kp RET
-                     &trans                &trans         &trans    &trans    &trans       &trans  &kp N0          &trans &kp COMMA           &trans
+&kp LA(TAB)  &kp N1     &kp N2     &kp N3      &kp N4         &kp N5     &kp N6           &kp N7  &kp N8         &kp N9  &kp N0       &kp DEL
+&trans       &kp MINUS  &kp EQUAL  &kp LBKT    &kp RBKT       &kp BSLH   &kp KP_MULTIPLY  &kp N4  &kp N5         &kp N6  &kp KP_PLUS  &kp KP_MINUS
+&trans       &kp ESC    &kp CAPS   &kp DELETE  &kp BACKSPACE  &kp GRAVE  &trans           &trans  &kp KP_DIVIDE  &kp N1  &kp N2       &kp N3        &kp RET  &kp RET
+&trans       &trans     &trans     &trans      &trans         &trans     &kp N0           &trans  &kp COMMA      &trans
             >;
+
             sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         adjust_layer {
             display-name = "Adjust Layer";
             bindings = <
-&kp F1      &kp F2         &kp F3         &kp F4         &kp F5            &kp F6                                    &kp F7       &kp F8       &kp F9       &kp F10  &kp F11  &kp F12
-&trans      &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3     &bt BT_DISC 4                              &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &F20_BT3 &F21_BT4 &out OUT_TOG
-&trans      &kp LG(GRAVE)  &kp PSCRN      &kp CAPS       &kp C_PLAY_PAUSE  &kp K_MUTE &bootloader         &sys_reset &kp C_VOL_DN &kp C_VOL_UP &kp F11      &kp F12  &bt BT_CLR &trans
-                          &trans                       &trans            &trans     &trans    &trans   &trans     &trans       &trans       &trans               &trans
+&kp F1  &kp F2         &kp F3         &kp F4         &kp F5            &kp F6         &kp F7        &kp F8        &kp F9        &kp F10       &kp F11   &kp F12
+&trans  &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3     &bt BT_DISC 4  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &F20_BT3      &F21_BT4  &out OUT_TOG
+&trans  &kp LG(GRAVE)  &kp PSCRN      &kp CAPS       &kp C_PLAY_PAUSE  &kp K_MUTE     &bootloader   &sys_reset    &kp C_VOL_DN  &kp C_VOL_UP  &kp F11   &kp F12       &bt BT_CLR  &trans
+&trans  &trans         &trans         &trans         &trans            &trans         &trans        &trans        &trans        &trans
             >;
+
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
 
         raise_c_layer {
             display-name = "Raise Layer";
             bindings = <
-&kp ESC &kp EXCL  &kp AT   &kp HASH &kp DLLR &kp PRCNT                             &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR  &kp DEL
-&trans  &kp UNDER &kp PLUS &kp LBRC &kp RBRC &kp PIPE                              &kp HOME  &kp LEFT  &kp DOWN  &kp UP   &kp RIGHT &kp TILDE
-&trans  &kp ESC   &kp CAPS &kp LPAR &kp RPAR &kp TILDE &kp LBKT          &kp RBKT  &kp END   &kp PG_UP &kp PG_DN &kp PSCRN &kp GRAVE &kp RET
-                 &trans            &trans   &trans    &trans   &trans   &trans    &trans    &trans    &trans             &trans
+&kp ESC  &kp EXCL   &kp AT    &kp HASH  &kp DLLR  &kp PRCNT  &kp CARET  &kp AMPS  &kp ASTRK  &kp LPAR   &kp RPAR   &kp DEL
+&trans   &kp UNDER  &kp PLUS  &kp LBRC  &kp RBRC  &kp PIPE   &kp HOME   &kp LEFT  &kp DOWN   &kp UP     &kp RIGHT  &kp TILDE
+&trans   &kp ESC    &kp CAPS  &kp LPAR  &kp RPAR  &kp TILDE  &kp LBKT   &kp RBKT  &kp END    &kp PG_UP  &kp PG_DN  &kp PSCRN  &kp GRAVE  &kp RET
+&trans   &trans     &trans    &trans    &trans    &trans     &trans     &trans    &trans     &trans
             >;
+
             sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
     };
