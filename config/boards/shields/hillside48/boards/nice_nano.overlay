@@ -3,14 +3,23 @@
  */
 
 #include <dt-bindings/led/led.h>
+#include <dt-bindings/pinctrl/nrf-pinctrl.h>
+
+&pinctrl {
+	hillside48_spi1_default: hillside48_spi1_default {
+		group1 {
+			psels = <NRF_PSEL(SPIM_MOSI, 0, 6)>,
+				<NRF_PSEL(SPIM_SCK, 0, 5)>,
+				<NRF_PSEL(SPIM_MISO, 0, 7)>;
+		};
+	};
+};
 
 &spi1 {
 	compatible = "nordic,nrf-spim";
 	status = "okay";
-	mosi-pin = <6>;
-	// Unused pins, needed for SPI def, but not used by ws2812 driver.
-	sck-pin = <5>;
-	miso-pin = <7>;
+	pinctrl-0 = <&hillside48_spi1_default>;
+	pinctrl-names = "default";
 
 	led_strip: ws2812@0 {
 		compatible = "worldsemi,ws2812-spi";
